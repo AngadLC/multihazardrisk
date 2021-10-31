@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hazard Map</title>
+    <!-- leaflet css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+
+    <!-- css -->
+    <link rel="stylesheet" href="./statics/sidebar.css">
+
+    <link rel="stylesheet" href="./statics/owl.carousel.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="./statics/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
+    <script src="./statics/data.json"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand"><img src="./img/logo.png" class="img-thumbnail" alt=""
+                    style="width: 50px; height: 50px;">
+                Hazards
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- adding the values inside the toogle button -->
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto ">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./hazardmap.html">Disaster Map</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#">About Our project</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#">Connect</a>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+    <!-- try sidebar -->
+    <aside class="sidebar">
+        <div class="toggle">
+            <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                <span></span>
+            </a>
+        </div>
+        <div class="side-inner">
+            <div class="container-fluid content">
+                <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+                <div class="row">
+
+                    <div class="left-sidebar ">
+                        <div class="card-body layer-card">
+                            <div class="row">
+                                <!-- layer1 -->
+                                <div class="col-4 thumbnails">
+                                    <img src="./img/logo.png" alt="hi i am image" class="img-fluid">
+                                </div>
+                                <div class="col-8">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span class="d-block layer-title mt-2">Layer Name</span>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input layer-card-cb"
+                                                checked='checked' id="buildinglayer">
+                                            <label class="custom-control-label" for="buildinglayer"></label>
+                                        </div>
+
+                                    </div>
+                                    <div class="description">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, suscipit.
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <label for="opacity">
+                                        <b class="ml-4 mt-2">Opacity:</b>
+                                    </label>
+                                    <input 
+                                    type="range" name="" id="" 
+                                    class="form-control-range opacity ml-2"
+                                    value="100"
+                                    min="5"
+                                    max="100"
+                                    data-toggle="tooltip"
+                                    title="Opacity">
+                                </div>
+                                <!-- layer2 -->
+                                <div class="col-4 thumbnails">
+                                    <img src="./img/logo.png" alt="hi i am image2" class="img-fluid">
+                                </div>
+                                <div class="col-8">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span class="d-block layer-title mt-2">Layer Name 2</span>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                            <label class="custom-control-label" for="customSwitch1"></label>
+                                        </div>
+
+                                    </div>
+                                    <div class="description">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, suscipit.
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <label for="opacity">
+                                        <b class="ml-4 mt-2">Opacity:</b>
+                                    </label>
+                                    <input type="range" name="" id="" class="form-control-range opacity ml-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    </aside>
+    <main>
+        <!-- cards -->
+        <div>
+            <div id="mapid">
+
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./statics/main.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+        integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="./statics/sidebar.js"></script>
+
+</body>
+
+</html>
