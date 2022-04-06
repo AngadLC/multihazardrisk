@@ -1,6 +1,6 @@
 var mymap = L.map('mapid', {
-    center: [28.2096, 83.9856],
-    zoom: 7,
+    center: [28.365203177025812,84.05586759137705],
+    zoom: 10,
     zoomControl: false
 });
 
@@ -37,7 +37,8 @@ function handelLayer(layername){
     var layer = L.tileLayer.wms("http://localhost:8080/geoserver/wms?",{
         layers: layername,
         transparent:true,
-        format:'image/png'
+        format:'image/png',
+        zIndex:100
     })
     return layer
 }
@@ -47,9 +48,10 @@ layerfromgeoserver.map(layer => {
 })
 // default layer visualization
 layerfromgeoserver.map(layer =>{
-    console.log(layer)
+    // console.log(layer)
     if(layer.deafultcheck === 'checked'){
         handelLayer(layer.layername).addTo(mymap)
+        $(".legend").append(wmsLegendcontrol(layer.layername,layer.layertitle))
     }
 })
 
@@ -58,17 +60,20 @@ layerfromgeoserver.map(layer =>{
 $(".layer-card-cb").on("change",function(){
     var layername = $(this).attr('id')
     var layertitle = $(this).attr('name')
-    console.log(layername,layertitle)
+    // console.log(layername,layertitle)
     if($(this).is(':checked')){
         window[layername]= handelLayer(layername).addTo(mymap)
+        $(".legend").append(wmsLegendcontrol(layername,layertitle))
     }
     else{
+        var className = layername.split(":")[1]
+        // console.log(className)
         mymap.eachLayer(function(layer){
-            console.log(layer)
             if(layer.options.layers === layername){
                 mymap.removeLayer(layer)
-            }
-        })
+            }  
+        });
+        $(`.legend .${className}`).remove()
     }
 })
 
@@ -83,3 +88,17 @@ $('.opacity').on('change',function(){
         }
     })
 })
+
+
+// legend function 
+function wmsLegendcontrol(layerName, layerTitle){
+    var className = layerName.split(":")[1]
+    // console.log(className)
+    var url = `http://localhost:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=${layerName}`
+    var legend = `<p class=${className} style='margin-top:10px; font-weight:Bold'>${layerTitle}</p>`
+    legend+=`<p><img class=${className} src=${url} > <br class=${className}/></p>
+    `
+    // console.log(legend)
+    return legend;
+    
+}
