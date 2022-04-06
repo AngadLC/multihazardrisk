@@ -1,3 +1,4 @@
+// let titleforprint ="ho";
 var mymap = L.map('mapid', {
     center: [28.365203177025812,84.05586759137705],
     zoom: 10,
@@ -62,6 +63,7 @@ $(".layer-card-cb").on("change",function(){
     var layertitle = $(this).attr('name')
     // console.log(layername,layertitle)
     if($(this).is(':checked')){
+        // titleforprint += layername
         window[layername]= handelLayer(layername).addTo(mymap)
         $(".legend").append(wmsLegendcontrol(layername,layertitle))
     }
@@ -89,10 +91,11 @@ $('.opacity').on('change',function(){
     })
 })
 
-
+let title1 = []
 // legend function 
 function wmsLegendcontrol(layerName, layerTitle){
     var className = layerName.split(":")[1]
+    // title1.append(className)
     // console.log(className)
     var url = `http://localhost:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=${layerName}`
     var legend = `<p class=${className} style='margin-top:10px; font-weight:Bold'>${layerTitle}</p>`
@@ -102,3 +105,20 @@ function wmsLegendcontrol(layerName, layerTitle){
     return legend;
     
 }
+// console.log(title1)
+// scale 
+L.control.scale({
+    position: 'bottomleft'
+}).addTo(mymap)
+// print
+L.control.browserPrint({position: 'bottomleft', title: 'Print ...',
+documentTitle:`Hazard Map`}).addTo(mymap);
+
+// mouse coordinate
+mymap.on('mousemove',function(e){
+    $('.map-coordinate').html(`lat:${e.latlng.lat}, Lng:${e.latlng.lng}`)
+})
+
+// map in full browser
+
+
